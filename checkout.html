@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <script  src="js/script.js"></script>
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="r93cYwzyqfVNh1wTl2UQrNORCYMdAfAH";;analytics.SNIPPET_VERSION="4.15.3";
+    analytics.load("r93cYwzyqfVNh1wTl2UQrNORCYMdAfAH");
+    analytics.page();
+    }}();
+  </script>
+  <style>
+   #checkout-page{
+    text-align: center;
+    font-size: medium;
+   }
+   #fieldset-billing{
+    font-size: medium;
+    text-decoration-color: blue;
+   }
+
+    #checkout-order-form {
+	margin: 1.5em 0;
+}
+
+#checkout-order-form fieldset {
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 1em;
+	margin-bottom: 1.3em;
+}
+
+#checkout-order-form legend {
+	padding: 0.3em;
+	background: #fafafa;
+	font-weight: bold;
+}
+
+#checkout-order-form div {
+	margin-bottom: 1em;
+}
+
+#checkout-order-form label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 0.3em;
+	text-align: left;
+}
+
+#checkout-order-form input[type="text"] {
+	width: 200px;
+	display: block;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 0.1em;
+}
+
+#checkout-order-form select {
+	width: 200px;
+	display: block;
+}
+
+.message {
+	display: block;
+	margin: 0.5em 0;
+	color: red;
+}
+
+#user-details {
+	margin: 1.5em 0;
+}
+
+#user-details > h2 {
+	text-align: center;
+	font-size: 2em;
+}
+
+#user-details-content {
+	margin: 1.5em 0;
+	padding: 1em;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+#user-details-content .detail {
+	float: left;
+	width: 46%;
+}
+
+#user-details-content .detail.right {
+	float: right;
+}
+
+#user-details-content .detail > h2 {
+	text-align: center;
+	font-size: 1.6em;
+	margin-bottom: 0.5em;
+}
+
+#user-details-content ul {
+	margin: 0 0 1em 0;
+	padding: 0;
+	list-style: none;
+}
+
+#user-details-content li {
+	display: block;
+	margin-bottom: 0.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid #ddd;
+}
+
+#paypal-form {
+	margin: 1.5em 0;
+}
+
+  </style>
+  
+
+</head>
+<body id="checkout-page">
+  <form  name="form" onsubmit="identify(event)"      id="checkout-order-form" method="post">
+    <h2>Your Details</h2>
+    
+    <fieldset id="fieldset-billing">
+      <legend>Billing</legend>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" data-type="string" data-message="This field cannot be empty" required/>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" data-type="expression" data-message="Not a valid email address" required/>
+      </div>
+      <div>
+        <label for="phone">Phone number</label>
+        <input type="text" name="phone" id="phone" data-type="number" data-message="Not a valid Number" required />
+      </div>
+      <div>
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" data-type="string" data-message="This field cannot be empty" required />
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" data-type="string" data-message="This field cannot be empty" required />
+      </div>
+      <div>
+        <label for="zip">ZIP Code</label>
+        <input type="text" name="zip" id="zip" data-type="string" data-message="This field cannot be empty" required/>
+      </div>
+      <div>
+        <label for="country">Country</label>
+        <select name="country" id="country" data-type="string" data-message="This field cannot be empty">
+          <option value="">Select</option>
+          <option value="De">Denmark</option>
+          <option value="IN">India</option>
+        </select>
+      </div>
+    </fieldset>
+    <p> <input type="button" id="submit-order"  value="Submit" onclick="submitForm()" class="btn" /></p>
+    
+
+  </form>
+ 
+  <br><br>
+  <script type="text/javascript">
+    function validateForm(){
+    var name = document.forms["form"]["name"].value;
+    var email = document.forms["form"]["email"].value;
+    var phone = document.forms["form"]["phone"].value;
+    var zip= document.forms["form"]["zip"].value;
+     // Validate name field
+     if (name == "") {
+        alert("Please enter your name.");
+        return false;
+      }
+
+      // Validate email field
+      if (email == "") {
+        alert("Please enter your email address.");
+        return false;
+      } else {
+        // Regular expression to validate email format
+        var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!email.match(emailRegex)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+      }
+
+      // Validate phone field
+      if (phone == "") {
+        alert("Please enter your 10 digit phone number.");
+        return false;
+      } else if (phone.length < 10 || phone.length >10 ) {
+        alert("Not a Valid Number.");
+        return false;
+      }
+
+       //validate zip code
+      if(zip==""){
+      alert("Please enter your pin code.");
+      return false;
+       }
+    else if(zip.length<6 || zip.length>6)
+      {
+        alert("Please enter valid pin code.");
+        return(false);
+      }
+      
+      return true;
+    }
+    
+    function submitForm() {
+			if (validateForm()) {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var phone= document.getElementById("phone").value;
+  var city= document.getElementById("city").value;
+  var address= document.getElementById("address").value;
+  var zip= document.getElementById("zip").value;
+// Store form data in local storage
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
+  localStorage.setItem("phone", phone);
+  localStorage.setItem("city", city);
+  localStorage.setItem("address", address);
+  localStorage.setItem("zip", zip);
+  // Redirect to next page
+  window.location.href = "order.html";
+      }
+    }
+// Segment tracking code
+    function identify(e)
+    {
+      e.preventDefault();
+      var form= e.target;
+      var name = form["name"].value;
+      var email= form["email"].value;
+      var phone= form["phone"].value;
+      var city= form ["city"].value;
+      var address = form ["address"].value;
+      var zip = form ["zip"].value;
+      var country = form["country"].value;
+
+      analytics.identify(12345,{
+      name:name,
+      email:email, 
+      phone:phone,
+      city:city,
+      address:address,
+      zip:zip,
+      location:location,
+      country:country
+      },
+             {
+                'integrations': {
+                    'Salesforce': true
+                }
+            });
+
+            analytics.track('Form Submitted', {
+                type: "Lead Generation",
+            });
+          }
+     
+  </script>
+
+  
+  <!--script type="text/javascript">
+          /*document.getElementById("checkout-order-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // prevent form submission
+  
+    // Get form data
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone= document.getElementById("phone").value;
+    var city= document.getElementById("city").value;
+    var address= document.getElementById("address").value;
+    var zip= document.getElementById("zip").value;
+  
+    // Store form data in local storage
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("city", city);
+    localStorage.setItem("address", address);
+    localStorage.setItem("zip", zip);
+    // Redirect to next page
+    window.location.href = "order.html";
+  });*/
+  </script!-->
+  
+</div>
+
+</body>
+</html>
