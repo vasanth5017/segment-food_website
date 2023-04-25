@@ -247,6 +247,7 @@ if (cartItems) {
   var city= document.getElementById("city").value;
   var address= document.getElementById("address").value;
   var zip= document.getElementById("zip").value;
+  var country=document.getElementById("country").value;
 // Store form data in local storage
   localStorage.setItem("name", name);
   localStorage.setItem("email", email);
@@ -254,7 +255,7 @@ if (cartItems) {
   localStorage.setItem("city", city);
   localStorage.setItem("address", address);
   localStorage.setItem("zip", zip);
-
+  
   analytics.identify(12345,{
       name:name,
       email:email, 
@@ -262,6 +263,7 @@ if (cartItems) {
       city:city,
       address:address,
       zip:zip,
+      country:country
 
       },
              {
