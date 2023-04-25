@@ -231,23 +231,7 @@
   localStorage.setItem("city", city);
   localStorage.setItem("address", address);
   localStorage.setItem("zip", zip);
-  // Redirect to next page
-  window.location.href = "order.html";
-      }
-    }
-// Segment tracking code
-    function identify(e)
-    {
-      e.preventDefault();
-      var form= e.target;
-      var name = form["name"].value;
-      var email= form["email"].value;
-      var phone= form["phone"].value;
-      var city= form ["city"].value;
-      var address = form ["address"].value;
-      var zip = form ["zip"].value;
-      var country = form["country"].value;
-
+ // Segment tracking code
       analytics.identify(12345,{
       name:name,
       email:email, 
@@ -268,34 +252,12 @@
                 type: "Lead Generation",
             });
           }
-     
-  </script>
-
-  
-  <!--script type="text/javascript">
-          /*document.getElementById("checkout-order-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // prevent form submission
-  
-    // Get form data
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone= document.getElementById("phone").value;
-    var city= document.getElementById("city").value;
-    var address= document.getElementById("address").value;
-    var zip= document.getElementById("zip").value;
-  
-    // Store form data in local storage
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("phone", phone);
-    localStorage.setItem("city", city);
-    localStorage.setItem("address", address);
-    localStorage.setItem("zip", zip);
-    // Redirect to next page
-    window.location.href = "order.html";
-  });*/
-  </script!-->
-  
+				
+ // Redirect to next page
+  window.location.href = "order.html";
+      }
+    }
+ </script>  
 </div>
 
 </body>
