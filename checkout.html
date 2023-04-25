@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
   <script  src="js/script.js"></script>
   <script>
     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="r93cYwzyqfVNh1wTl2UQrNORCYMdAfAH";;analytics.SNIPPET_VERSION="4.15.3";
@@ -124,7 +125,10 @@
 
 </head>
 <body id="checkout-page">
-  <form  name="form" onsubmit="identify(event)"      id="checkout-order-form" method="post">
+  <div id="cart-disp">
+
+  </div>
+  <form  name="form" onsubmit="identify(event)"  id="checkout-order-form" method="post">
     <h2>Your Details</h2>
     
     <fieldset id="fieldset-billing">
@@ -169,6 +173,25 @@
  
   <br><br>
   <script type="text/javascript">
+   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+
+// Display the cart items on the page
+if (cartItems) {
+  const cartBasket = document.querySelector('.cart-content');
+
+  cartItems.forEach((item) => {
+    let newProductElement = createCartProduct(item.title, item.price, item.imgSrc);
+    let element = document.createElement('div');
+    element.innerHTML = newProductElement;
+    cartBasket.append(element);
+  });
+
+  loadContent();
+  updateTotal();
+}
+   
+
+
     function validateForm(){
     var name = document.forms["form"]["name"].value;
     var email = document.forms["form"]["email"].value;
@@ -231,15 +254,15 @@
   localStorage.setItem("city", city);
   localStorage.setItem("address", address);
   localStorage.setItem("zip", zip);
- // Segment tracking code
-      analytics.identify(12345,{
+
+  analytics.identify(12345,{
       name:name,
       email:email, 
       phone:phone,
       city:city,
       address:address,
       zip:zip,
-      location:location,
+      
       country:country
       },
              {
@@ -251,13 +274,54 @@
             analytics.track('Form Submitted', {
                 type: "Lead Generation",
             });
-          }
-				
- // Redirect to next page
+
+  // Redirect to next page
   window.location.href = "order.html";
       }
     }
- </script>  
+// Segment tracking code
+    // function identify(e)
+    // {
+    //   e.preventDefault();
+    //   var form= e.target;
+    //   var name = form["name"].value;
+    //   var email= form["email"].value;
+    //   var phone= form["phone"].value;
+    //   var city= form ["city"].value;
+    //   var address = form ["address"].value;
+    //   var zip = form ["zip"].value;
+    //   var country = form["country"].value;
+
+     
+    //       }
+     
+  </script>
+
+  
+  <!--script type="text/javascript">
+          /*document.getElementById("checkout-order-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // prevent form submission
+  
+    // Get form data
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone= document.getElementById("phone").value;
+    var city= document.getElementById("city").value;
+    var address= document.getElementById("address").value;
+    var zip= document.getElementById("zip").value;
+  
+    // Store form data in local storage
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("city", city);
+    localStorage.setItem("address", address);
+    localStorage.setItem("zip", zip);
+    // Redirect to next page
+    window.location.href = "order.html";
+  });*/
+  </script!-->
+  
 </div>
 
 </body>
