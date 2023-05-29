@@ -256,7 +256,7 @@ if (cartItems) {
   localStorage.setItem("address", address);
   localStorage.setItem("zip", zip);
   
-  analytics.identify(customer_data,{
+  analytics.identify(5017,{
       name:name,
       email:email, 
       phone:phone,
@@ -266,10 +266,7 @@ if (cartItems) {
       country:country
 
       },
-             {
-                'integrations': {
-                    'Salesforce': true
-                }
+            
             });
 
             analytics.track('Form Submitted', {
