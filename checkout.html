@@ -145,13 +145,17 @@
         <label for="phone">Phone number</label>
         <input type="text" name="phone" id="phone" data-type="number" data-message="Not a valid Number" required />
       </div>
+	<div>
+        <label for="street">Street name</label>
+        <input type="text" name="street" id="street" data-type="string" data-message="This field cannot be empty" required />
+      </div>
       <div>
         <label for="city">City</label>
         <input type="text" name="city" id="city" data-type="string" data-message="This field cannot be empty" required />
       </div>
       <div>
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address" data-type="string" data-message="This field cannot be empty" required />
+        <label for="state">Address</label>
+        <input type="text" name="state" id="state" data-type="string" data-message="This field cannot be empty" required />
       </div>
       <div>
         <label for="zip">ZIP Code</label>
@@ -173,26 +177,7 @@
  
   <br><br>
   <script type="text/javascript">
-   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-
-// Display the cart items on the page
-if (cartItems) {
-  const cartBasket = document.querySelector('.cart-content');
-
-  cartItems.forEach((item) => {
-    let newProductElement = createCartProduct(item.title, item.price, item.imgSrc);
-    let element = document.createElement('div');
-    element.innerHTML = newProductElement;
-    cartBasket.append(element);
-  });
-
-  loadContent();
-  updateTotal();
-}
-   
-
-
-    function validateForm(){
+   function validateForm(){
     var name = document.forms["form"]["name"].value;
     var email = document.forms["form"]["email"].value;
     var phone = document.forms["form"]["phone"].value;
@@ -244,28 +229,31 @@ if (cartItems) {
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
   var phone= document.getElementById("phone").value;
+  var street= document.getElementById("street").value;
   var city= document.getElementById("city").value;
-  var address= document.getElementById("address").value;
+  var state= document.getElementById("state").value;
   var zip= document.getElementById("zip").value;
   var country=document.getElementById("country").value;
 // Store form data in local storage
   localStorage.setItem("name", name);
   localStorage.setItem("email", email);
   localStorage.setItem("phone", phone);
+  localStorage.setItem("street", street);				
   localStorage.setItem("city", city);
-  localStorage.setItem("address", address);
+  localStorage.setItem("state", state);
   localStorage.setItem("zip", zip);
-  
-  analytics.identify(12345,{
-      name:name,
+  localStorage.setItem("country", country);
+  analytics.identify(51237,{
       email:email, 
+      name:name,
       phone:phone,
-      city:city,
-      address:address,
-      zip:zip,
-      country:country
-
-      },
+      address:{
+	        street:street,
+	        city:city,
+	        state:state,
+                zip:zip,
+                country:country
+              },
             
             });
 
