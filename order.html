@@ -24,9 +24,12 @@
 			 <p>Name: <span id="display-name"></span></p>
 			 <p>Email: <span id="display-email"></span></p>
 			 <p>Phone: <span id="display-phone"></span></p>
-			 <p>Address: <span id="display-address"></span></p>
+			 <p>Street: <span id="display-street"></span></p>
 			 <p>City: <span id="display-city"></span></p>
+			 <p>State: <span id="display-state"></span></p>
+			 <p>Country: <span id="display-country"></span></p>
 			 <p>zip: <span id="display-zip"></span></p>
+			 
 		</table>
 		<p>We'll send you an email confirmation shortly. Thank you for shopping with us!</p>
 <style>
@@ -62,8 +65,10 @@ h1 {
 			 var name = localStorage.getItem("name");
 			 var email = localStorage.getItem("email");
 			 var phone = localStorage.getItem("phone");
-			 var address = localStorage.getItem("address");
+			 var street = localStorage.getItem("street");
 			 var city = localStorage.getItem("city");
+		         var state=localStorage.getitem("state");
+		         var Country=localStorage.getitem("country);
 			 var zip= localStorage.getItem("zip");
 
 			 
@@ -71,15 +76,19 @@ h1 {
 			 document.getElementById("display-name").textContent = name;
 			 document.getElementById("display-email").textContent = email;
 			 document.getElementById("display-phone").textContent = phone;
-			 document.getElementById("display-address").textContent = address;
+			 document.getElementById("display-street").textContent = street;
 			 document.getElementById("display-city").textContent = city;
+		         document.getElementById("display-state").textContent= state;
+		         document.getElementById("display-country").textContent= country;
 			 document.getElementById("display-zip").textContent = zip;
 			 // Clear local storage
 			 localStorage.removeItem("name");
 			 localStorage.removeItem("email");
 			 localStorage.removeItem("phone");
-			 localStorage.removeItem("address");
+			 localStorage.removeItem("street");
 			 localStorage.removeItem("city");
+		         localStorage.removeItem("state");
+		         localStorage.removeItem("country");
 			 localStorage.removeItem("zip");
             
 			 //Order display page
