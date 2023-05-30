@@ -62,13 +62,14 @@ h1 {
 			 
 	<script>
 			 // Retrieve form data from local storage
+			// Retrieve form data from local storage
 			 var name = localStorage.getItem("name");
 			 var email = localStorage.getItem("email");
 			 var phone = localStorage.getItem("phone");
 			 var street = localStorage.getItem("street");
 			 var city = localStorage.getItem("city");
-		         var state=localStorage.getItem("state");
-		         var Country=localStorage.getItem("country);
+			 var state = localStorage.getItem("state");
+			 var country=localStorage.getItem("country");
 			 var zip= localStorage.getItem("zip");
 
 			 
@@ -78,8 +79,8 @@ h1 {
 			 document.getElementById("display-phone").textContent = phone;
 			 document.getElementById("display-street").textContent = street;
 			 document.getElementById("display-city").textContent = city;
-		         document.getElementById("display-state").textContent= state;
-		         document.getElementById("display-country").textContent= country;
+			 document.getElementById("display-state").textContent = state;
+			 document.getElementById("display-country").textContent = country;
 			 document.getElementById("display-zip").textContent = zip;
 			 // Clear local storage
 			 localStorage.removeItem("name");
@@ -87,9 +88,9 @@ h1 {
 			 localStorage.removeItem("phone");
 			 localStorage.removeItem("street");
 			 localStorage.removeItem("city");
-		         localStorage.removeItem("state");
-		         localStorage.removeItem("country");
+			 localStorage.removeItem("state");
 			 localStorage.removeItem("zip");
+            
             
 			 //Order display page
 			 const cartItems = JSON.parse(localStorage.getItem('cartItems'));
