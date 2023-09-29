@@ -127,29 +127,6 @@ function updateTotal()
 
   });
 
-  totalValue.innerHTML='Rs.'+total;
-// Function to display the popup
-        function displayPopup() {
-            const total = calculateTotalPrice();
-            if (total !== 0) {
-                // Display the popup if the total price is not zero
-                document.getElementById("popup").style.display = "block";
-
-                // Add event listener to the confirmation button
-                document.getElementById("btn-buy").addEventListener("click", function () {
-                    // Redirect to the next web page
-                    window.location.href = "checkout.html";
-                });
-
-                // Add event listener to the cancel button
-                document.getElementById("cancel-button").addEventListener("click", function () {
-                    // Close the popup
-                    document.getElementById("popup").style.display = "none";
-                });
-            } else {
-                // Total price is zero, do not display the popup
-                alert("Your cart is empty.");
-            }
 
   // Add Product Count in Cart Icon
 
