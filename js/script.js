@@ -3,6 +3,7 @@ const cart=document.querySelector('.cart');
 const btnClose=document.querySelector('#cart-close');
 
 
+
 btnCart.addEventListener('click',()=>{
   cart.classList.add('cart-active');
 });
@@ -61,7 +62,7 @@ function changeQty(){
 }
 
 let itemList=[];
-     
+
 //Add Cart
 function addCart(){
  let food=this.parentElement;
@@ -127,6 +128,8 @@ function updateTotal()
 
   });
 
+  totalValue.innerHTML='Rs.'+total;
+
 
   // Add Product Count in Cart Icon
 
@@ -143,11 +146,5 @@ function updateTotal()
   }
   
 }
-const orderBtn = document.querySelector('#order-btn');
-
-orderBtn.addEventListener('click', () => {
-  // Save the cart items to the localStorage
-  localStorage.setItem('cartItems', JSON.stringify(itemList));
-});
 
 
